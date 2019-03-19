@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Copyright © 2018 Dennis Schulmeister-Zimolong
 
     E-Mail: dhbw@windows3.de
@@ -12,7 +12,7 @@
 <%@taglib tagdir="/WEB-INF/tags/templates" prefix="template"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
+<%-- test --%>
 <template:base>
     <jsp:attribute name="title">
         Anmeldung nicht möglich
