@@ -76,7 +76,7 @@
         <c:choose>
             <c:when test="${empty gifts}">
                 <p>
-                    Es wurden keine Aufgaben gefunden. 🐈
+                    Es wurden keine Geschenke gefunden. 🐈
                 </p>
             </c:when>
             <c:otherwise>
