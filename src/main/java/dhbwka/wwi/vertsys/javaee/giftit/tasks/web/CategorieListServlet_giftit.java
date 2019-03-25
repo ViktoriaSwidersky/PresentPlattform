@@ -1,22 +1,21 @@
 /*
  * Copyright © 2019 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
-
 /**
  *
  * @author Viktoria
  *//*
  * Copyright © 2018 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
@@ -44,7 +43,7 @@ import javax.servlet.http.HttpSession;
  * Formular, mit dem ein neue Kategorie angelegt werden kann, sowie eine Liste,
  * die zum Löschen der Kategorien verwendet werden kann.
  */
-@WebServlet(name = "CategorieListServlet", urlPatterns = {"/CategorieList"})
+@WebServlet(name = "CategorieListServlet", urlPatterns = {"/app/CategorieList"})
 public class CategorieListServlet_giftit extends HttpServlet {
 
     @EJB
@@ -76,7 +75,7 @@ public class CategorieListServlet_giftit extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Angeforderte Aktion ausführen        
+        // Angeforderte Aktion ausführen
         String action = request.getParameter("action");
 
         if (action == null) {

@@ -1,9 +1,9 @@
 /*
  * Copyright © 2019 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
@@ -23,15 +23,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 /*
  * Copyright © 2018 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
-
-
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean;
 import dhbwka.wwi.vertsys.javaee.giftit.common.jpa.User;
@@ -52,48 +50,48 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "SignUpServlet", urlPatterns = {"/SignUp"})
 public class Signup_Servlet_giftit extends HttpServlet {
-    
+
     @EJB
     ValidationBean validationBean;
-            
+
     @EJB
     UserBean userBean;
-    
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         // Anfrage an dazugerhörige JSP weiterleiten
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login_giftit/signup.jsp");
         dispatcher.forward(request, response);
-        
+
         // Alte Formulardaten aus der Session entfernen
         HttpSession session = request.getSession();
         session.removeAttribute("signup_form");
     }
-    
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        // Formulareingaben auslesen        
+
+        // Formulareingaben auslesen
         String username = request.getParameter("signup_username");
         String password1 = request.getParameter("signup_password1");
         String password2 = request.getParameter("signup_password2");
-        
+
         //Vor und Nachname auslesen
         String forname = request.getParameter("signup_forname");
         String lastname = request.getParameter("signup_lastname");
-        
+
         // Eingaben prüfen
         User user = new User(username, password1, forname, lastname);
         List<String> errors = this.validationBean.validate(user);
         this.validationBean.validate(user.getPassword(), errors);
-        
+
         if (password1 != null && password2 != null && !password1.equals(password2)) {
             errors.add("Die beiden Passwörter stimmen nicht überein.");
         }
-        
+
         // Neuen Benutzer anlegen
         if (errors.isEmpty()) {
             try {
@@ -102,24 +100,23 @@ public class Signup_Servlet_giftit extends HttpServlet {
                 errors.add(ex.getMessage());
             }
         }
-        
+
         // Weiter zur nächsten Seite
         if (errors.isEmpty()) {
             // Keine Fehler: Startseite aufrufen
             request.login(username, password1);
-            response.sendRedirect(request.getContextPath() + "/Dashboard_giftit");
+            response.sendRedirect(request.getContextPath() + "/app/dashboard_giftit");
         } else {
             // Fehler: Formuler erneut anzeigen
             FormValues formValues = new FormValues();
             formValues.setValues(request.getParameterMap());
             formValues.setErrors(errors);
-            
+
             HttpSession session = request.getSession();
             session.setAttribute("signup_form", formValues);
-            
+
             response.sendRedirect(request.getRequestURI());
         }
     }
-    
-}
 
+}

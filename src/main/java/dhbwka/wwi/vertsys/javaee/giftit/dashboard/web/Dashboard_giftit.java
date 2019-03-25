@@ -1,28 +1,27 @@
 /*
  * Copyright © 2019 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
-
-
 /**
  *
  * @author Viktoria
  */
 /*
  * Copyright © 2019 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
 package dhbwka.wwi.vertsys.javaee.giftit.dashboard.web;
+
 import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardContentProvider;
 import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardSection;
 import java.io.IOException;
@@ -35,14 +34,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  * Servlet für die Startseite mit dem Übersichts-Dashboard.
  */
-@WebServlet(name = "Dashboard_giftit", urlPatterns = {"/Dashboard_giftit"})
+@WebServlet(name = "dashboard_giftit", urlPatterns = {"/app/dashboard_giftit"})
 public class Dashboard_giftit extends HttpServlet {
 
-       // Kacheln für Aufgaben
+    // Kacheln für Aufgaben
     @EJB(beanName = "tasks")
     DashboardContentProvider taskContent;
 
@@ -53,7 +51,7 @@ public class Dashboard_giftit extends HttpServlet {
         // Dashboard-Rubriken und Kacheln erzeugen und im Request Context ablegen
         List<DashboardSection> sections = new ArrayList<>();
         request.setAttribute("sections", sections);
-        
+
         taskContent.createDashboardContent(sections);
 
         // Anfrage an die JSP weiterleiten

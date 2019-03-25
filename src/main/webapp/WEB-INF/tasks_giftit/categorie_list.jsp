@@ -1,10 +1,10 @@
-<%-- 
+<%--
     Document   : categorie_list
     Created on : 20.03.2019, 20:44:03
     Author     : Viktoria
 --%>
 
-<%-- 
+<%--
     Copyright © 2018 Dennis Schulmeister-Zimolong
 
     E-Mail: dhbw@windows3.de
@@ -30,11 +30,11 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/Dashboard_giftit"/>">Dashboard</a>
+            <a href="<c:url value="/app/dashboard_giftit"/>">Dashboard</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/GiftList"/>">Liste</a>
+            <a href="<c:url value="/app/GiftList"/>">Liste</a>
         </div>
     </jsp:attribute>
 

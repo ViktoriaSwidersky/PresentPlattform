@@ -1,10 +1,10 @@
-<%-- 
+<%--
     Document   : dashboard
     Created on : 20.03.2019, 20:38:29
     Author     : Viktoria
 --%>
 
-<%-- 
+<%--
     Copyright © 2019 Dennis Schulmeister-Zimolong
 
     E-Mail: dhbw@windows3.de
@@ -30,15 +30,15 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/GiftList"/>">Liste der Geschenke</a>
+            <a href="<c:url value="/app/GiftList"/>">Liste der Geschenke</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/GiftEdit"/>">Geschenk anlegen</a>
+            <a href="<c:url value="/app/GiftEdit"/>">Geschenk anlegen</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/CategorieList"/>">Kategorien bearbeiten</a>
+            <a href="<c:url value="/app/CategorieList"/>">Kategorien bearbeiten</a>
         </div>
     </jsp:attribute>
 

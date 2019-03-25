@@ -1,10 +1,10 @@
-<%-- 
+<%--
     Document   : gifts_list
     Created on : 20.03.2019, 20:43:12
     Author     : Viktoria
 --%>
 
-<%-- 
+<%--
     Copyright © 2018 Dennis Schulmeister-Zimolong
 
     E-Mail: dhbw@windows3.de
@@ -30,15 +30,15 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/Dashboard_giftit"/>">Dashboard</a>
+            <a href="<c:url value="/app/dashboard_giftit"/>">Dashboard</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/GiftEdit"/>">Geschenk anlegen</a>
+            <a href="<c:url value="/app/GiftEdit"/>">Geschenk anlegen</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/CategorieList"/>">Kategorien bearbeiten</a>
+            <a href="<c:url value="/app/CategorieList"/>">Kategorien bearbeiten</a>
         </div>
     </jsp:attribute>
 
@@ -81,7 +81,7 @@
             </c:when>
             <c:otherwise>
                 <jsp:useBean id="utils" class="dhbwka.wwi.vertsys.javaee.giftit.common.web.WebUtils"/>
-                
+
                 <table>
                     <thead>
                         <tr>

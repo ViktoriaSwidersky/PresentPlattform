@@ -1,9 +1,9 @@
 /*
  * Copyright © 2018 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
@@ -26,12 +26,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet für die tabellarische Auflisten der Aufgaben.
  */
-@WebServlet(name = "GiftListServlet", urlPatterns = {"/GiftList"})
+@WebServlet(name = "GiftListServlet", urlPatterns = {"/app/GiftList"})
 public class GiftListServlet_giftit extends HttpServlet {
 
     @EJB
     private CategoryBean categoryBean;
-    
+
     @EJB
     private GiftBean_giftit taskBean;
 

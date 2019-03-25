@@ -1,9 +1,9 @@
 /*
  * Copyright © 2018 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
@@ -35,7 +35,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Seite zum Anlegen oder Bearbeiten einer Aufgabe.
  */
-@WebServlet(name = "GiftEditServlet", urlPatterns = {"/GiftEdit"})
+@WebServlet(name = "GiftEditServlet", urlPatterns = {"/app/GiftEdit"})
 public class GiftEditServlet_giftit extends HttpServlet {
 
     @EJB
@@ -63,7 +63,7 @@ public class GiftEditServlet_giftit extends HttpServlet {
 
         Task task = this.getRequestedTask(request);
         request.setAttribute("edit", task.getId() != 0);
-                                
+
         if (session.getAttribute("task_form") == null) {
             // Keine Formulardaten mit fehlerhaften Daten in der Session,
             // daher Formulardaten aus dem Datenbankobjekt übernehmen
@@ -72,7 +72,7 @@ public class GiftEditServlet_giftit extends HttpServlet {
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/tasks/task_edit.jsp").forward(request, response);
-        
+
         session.removeAttribute("task_form");
     }
 
