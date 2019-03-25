@@ -9,11 +9,11 @@
  */
 package dhbwka.wwi.vertsys.javaee.giftit.tasks.web;
 
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.GiftBean_giftit;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Task;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.TaskStatus;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.GiftStatus;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Gift_giftit;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GiftListServlet_giftit extends HttpServlet {
 
     @EJB
-    private CategoryBean categoryBean;
+    private CategoryBean_giftit categoryBean;
 
     @EJB
     private GiftBean_giftit taskBean;
@@ -41,7 +41,7 @@ public class GiftListServlet_giftit extends HttpServlet {
 
         // Verfügbare Kategorien und Stati für die Suchfelder ermitteln
         request.setAttribute("categories", this.categoryBean.findAllSorted());
-        request.setAttribute("statuses", TaskStatus.values());
+        request.setAttribute("statuses", GiftStatus.values());
 
         // Suchparameter aus der URL auslesen
         String searchText = request.getParameter("search_text");
@@ -49,8 +49,8 @@ public class GiftListServlet_giftit extends HttpServlet {
         String searchStatus = request.getParameter("search_status");
 
         // Anzuzeigende Aufgaben suchen
-        Category category = null;
-        TaskStatus status = null;
+        Category_giftit category = null;
+        GiftStatus status = null;
 
         if (searchCategory != null) {
             try {
@@ -62,15 +62,15 @@ public class GiftListServlet_giftit extends HttpServlet {
 
         if (searchStatus != null) {
             try {
-                status = TaskStatus.valueOf(searchStatus);
+                status = GiftStatus.valueOf(searchStatus);
             } catch (IllegalArgumentException ex) {
                 status = null;
             }
 
         }
 
-        List<Task> tasks = this.taskBean.search(searchText, category, status);
-        request.setAttribute("tasks", tasks);
+        List<Gift_giftit> gifts = this.taskBean.search(searchText, category, status);
+        request.setAttribute("gifts", gifts);
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/tasks_giftit/gifts_list.jsp").forward(request, response);
