@@ -1,20 +1,20 @@
 /*
  * Copyright © 2019 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
 package dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb;
 
 import dhbwka.wwi.vertsys.javaee.giftit.common.web.WebUtils;
-import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardContentProvider;
-import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardSection;
-import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardTile;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.TaskStatus;
+import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardContentProvider_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardSection_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardTile_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.GiftStatus;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -22,14 +22,14 @@ import javax.ejb.Stateless;
 /**
  * EJB zur Definition der Dashboard-Kacheln für Aufgaben.
  */
-@Stateless(name = "gifts")
-public class DashboardContent_giftit implements DashboardContentProvider {
+@Stateless(name = "tasks")
+public class DashboardContent_giftit implements DashboardContentProvider_giftit {
 
     @EJB
-    private CategoryBean categoryBean;
+    private CategoryBean_giftit categoryBean;
 
     @EJB
-    private TaskBean taskBean;
+    private GiftBean_giftit giftBean;
 
     /**
      * Vom Dashboard aufgerufenen Methode, um die anzuzeigenden Rubriken und
@@ -39,16 +39,16 @@ public class DashboardContent_giftit implements DashboardContentProvider {
      * angehängt werden müssen
      */
     @Override
-    public void createDashboardContent(List<DashboardSection> sections) {
+    public void createDashboardContent(List<DashboardSection_giftit> sections) {
         // Zunächst einen Abschnitt mit einer Gesamtübersicht aller Aufgaben
         // in allen Kategorien erzeugen
-        DashboardSection section = this.createSection(null);
+        DashboardSection_giftit section = this.createSection(null);
         sections.add(section);
 
         // Anschließend je Kategorie einen weiteren Abschnitt erzeugen
-        List<Category> categories = this.categoryBean_giftit.findAllSorted();
+        List<Category_giftit> categories = this.categoryBean.findAllSorted();
 
-        for (Category category : categories) {
+        for (Category_giftit category : categories) {
             section = this.createSection(category);
             sections.add(section);
         }
@@ -66,9 +66,9 @@ public class DashboardContent_giftit implements DashboardContentProvider {
      * @param category Aufgaben-Kategorie, für die Kacheln erzeugt werden sollen
      * @return Neue Dashboard-Rubrik mit den Kacheln
      */
-    private DashboardSection createSection(Category category) {
+    private DashboardSection_giftit createSection(Category_giftit category) {
         // Neue Rubrik im Dashboard erzeugen
-        DashboardSection section = new DashboardSection();
+        DashboardSection_giftit section = new DashboardSection_giftit();
         String cssClass = "";
 
         if (category != null) {
@@ -79,29 +79,29 @@ public class DashboardContent_giftit implements DashboardContentProvider {
         }
 
         // Eine Kachel für alle Aufgaben in dieser Rubrik erzeugen
-        DashboardTile tile = this.createTile(category, null, "Alle", cssClass + " status-all", "calendar");
+        DashboardTile_giftit tile = this.createTile(category, null, "Alle", cssClass + " status-all", "calendar");
         section.getTiles().add(tile);
 
         // Ja Aufgabenstatus eine weitere Kachel erzeugen
-        for (TaskStatus status : TaskStatus.values()) {
+        for (GiftStatus status : GiftStatus.values()) {
             String cssClass1 = cssClass + " status-" + status.toString().toLowerCase();
             String icon = "";
 
             switch (status) {
-                case OPEN:
-                    icon = "doc-text";
+                case IDEA:
+                    icon = "idea";
                     break;
-                case IN_PROGRESS:
-                    icon = "rocket";
+                case PLATFORM_FOUND:
+                    icon = "treasure_chest";
                     break;
-                case FINISHED:
-                    icon = "ok";
+                case IN_ORDER:
+                    icon = "package";
                     break;
                 case CANCELED:
                     icon = "cancel";
                     break;
-                case POSTPONED:
-                    icon = "bell-off-empty";
+                case DELIVERD:
+                    icon = "tick";
                     break;
             }
 
@@ -125,8 +125,8 @@ public class DashboardContent_giftit implements DashboardContentProvider {
      * @param icon
      * @return
      */
-    private DashboardTile createTile(Category category, TaskStatus status, String label, String cssClass, String icon) {
-        int amount = taskBean.search(null, category, status).size();
+    private DashboardTile_giftit createTile(Category_giftit category, GiftStatus status, String label, String cssClass, String icon) {
+        int amount = giftBean.search(null, category, status).size();
         String href = "/app/tasks/list/";
 
         if (category != null) {
@@ -137,7 +137,7 @@ public class DashboardContent_giftit implements DashboardContentProvider {
             href = WebUtils.addQueryParameter(href, "search_status", status.toString());
         }
 
-        DashboardTile tile = new DashboardTile();
+        DashboardTile_giftit tile = new DashboardTile_giftit();
         tile.setLabel(label);
         tile.setCssClass(cssClass);
         tile.setHref(href);

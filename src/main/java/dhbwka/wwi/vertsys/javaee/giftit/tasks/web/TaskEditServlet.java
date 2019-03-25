@@ -12,7 +12,7 @@ package dhbwka.wwi.vertsys.javaee.giftit.tasks.web;
 import dhbwka.wwi.vertsys.javaee.giftit.common.web.WebUtils;
 import dhbwka.wwi.vertsys.javaee.giftit.common.web.FormValues;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.TaskBean;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.GiftBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean;
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Task;
@@ -39,7 +39,7 @@ import javax.servlet.http.HttpSession;
 public class TaskEditServlet extends HttpServlet {
 
     @EJB
-    TaskBean taskBean;
+    GiftBean_giftit taskBean;
 
     @EJB
     CategoryBean categoryBean;

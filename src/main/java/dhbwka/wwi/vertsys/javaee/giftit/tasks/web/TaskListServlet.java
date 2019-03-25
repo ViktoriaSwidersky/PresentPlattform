@@ -10,7 +10,7 @@
 package dhbwka.wwi.vertsys.javaee.giftit.tasks.web;
 
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.TaskBean;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.GiftBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Task;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.TaskStatus;
@@ -33,7 +33,7 @@ public class TaskListServlet extends HttpServlet {
     private CategoryBean categoryBean;
     
     @EJB
-    private TaskBean taskBean;
+    private GiftBean_giftit taskBean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)

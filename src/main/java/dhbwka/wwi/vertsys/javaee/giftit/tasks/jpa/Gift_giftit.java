@@ -44,7 +44,7 @@ public class Gift_giftit implements Serializable {
     private User owner;
 
     @ManyToOne
-    private Category category;
+    private Category_giftit category;
 
     @Column(length = 50)
     @NotNull(message = "Die Bezeichnung darf nicht leer sein.")
@@ -69,7 +69,7 @@ public class Gift_giftit implements Serializable {
     public Gift_giftit() {
     }
 
-    public Gift_giftit(User owner, Category category, String shortText, String longText, Date dueDate, Time dueTime) {
+    public Gift_giftit(User owner, Category_giftit category, String shortText, String longText, Date dueDate, Time dueTime) {
         this.owner = owner;
         this.category = category;
         this.shortText = shortText;
@@ -96,11 +96,11 @@ public class Gift_giftit implements Serializable {
         this.owner = owner;
     }
 
-    public Category getCategory() {
+    public Category_giftit getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(Category_giftit category) {
         this.category = category;
     }
 

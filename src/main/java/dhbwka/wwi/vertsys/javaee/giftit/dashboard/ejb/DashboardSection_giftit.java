@@ -1,9 +1,9 @@
 /*
  * Copyright © 2019 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
@@ -18,13 +18,13 @@ import java.util.List;
 public class DashboardSection_giftit {
 
     private String label = "";
-    private List<DashboardTile> tiles = new ArrayList<>();
-    
+    private List<DashboardTile_giftit> tiles = new ArrayList<>();
+
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public DashboardSection_giftit() {
     }
-    
-    public DashboardSection_giftit(String label, List<DashboardTile> tiles) {
+
+    public DashboardSection_giftit(String label, List<DashboardTile_giftit> tiles) {
         this.label = label;
         this.tiles = tiles;
     }
@@ -34,16 +34,16 @@ public class DashboardSection_giftit {
     public String getLabel() {
         return label;
     }
-    
+
     public void setLabel(String label) {
         this.label = label;
     }
-    
-    public List<DashboardTile> getTiles() {
+
+    public List<DashboardTile_giftit> getTiles() {
         return tiles;
     }
-    
-    public void setTiles(List<DashboardTile> tiles) {
+
+    public void setTiles(List<DashboardTile_giftit> tiles) {
         this.tiles = tiles;
     }
     //</editor-fold>

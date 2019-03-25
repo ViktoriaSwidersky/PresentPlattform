@@ -24,7 +24,7 @@ package dhbwka.wwi.vertsys.javaee.giftit.tasks.web;
 
 import dhbwka.wwi.vertsys.javaee.giftit.common.web.FormValues;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.TaskBean;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.GiftBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Task;
@@ -51,7 +51,7 @@ public class CategorieListServlet_giftit extends HttpServlet {
     CategoryBean categoryBean;
 
     @EJB
-    TaskBean taskBean;
+    GiftBean_giftit taskBean;
 
     @EJB
     ValidationBean validationBean;
