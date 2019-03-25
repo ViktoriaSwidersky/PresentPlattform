@@ -25,7 +25,10 @@ import dhbwka.wwi.vertsys.javaee.giftit.common.web.FormValues;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.GiftBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.ValidationBean;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Gift_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Task;
 import java.io.IOException;
 import java.util.List;
@@ -47,7 +50,7 @@ import javax.servlet.http.HttpSession;
 public class CategorieListServlet_giftit extends HttpServlet {
 
     @EJB
-    CategoryBean categoryBean;
+    CategoryBean_giftit categoryBean;
 
     @EJB
     GiftBean_giftit taskBean;
@@ -106,7 +109,7 @@ public class CategorieListServlet_giftit extends HttpServlet {
         // Formulareingaben prüfen
         String name = request.getParameter("name");
 
-        Category category = new Category(name);
+        Category_giftit category = new Category_giftit(name);
         List<String> errors = this.validationBean.validate(category);
 
         // Neue Kategorie anlegen
@@ -148,7 +151,7 @@ public class CategorieListServlet_giftit extends HttpServlet {
         // Kategorien löschen
         for (String categoryId : categoryIds) {
             // Zu löschende Kategorie ermitteln
-            Category category;
+            Category_giftit category;
 
             try {
                 category = this.categoryBean.findById(Long.parseLong(categoryId));
@@ -161,12 +164,12 @@ public class CategorieListServlet_giftit extends HttpServlet {
             }
 
             // Bei allen betroffenen Aufgaben, den Bezug zur Kategorie aufheben
-            List<Task> tasks = category.getTasks();
+            List<Gift_giftit> gifts = category.getGifts();
 
-            if (tasks != null) {
-                tasks.forEach((Task task) -> {
-                    task.setCategory(null);
-                    this.taskBean.update(task);
+            if (gifts != null) {
+                gifts.forEach((Gift_giftit gift) -> {
+                    gift.setCategory(null);
+                    this.taskBean.update(gift);
                 });
             }
 
