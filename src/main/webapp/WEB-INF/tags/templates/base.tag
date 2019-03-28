@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Copyright © 2018 Dennis Schulmeister-Zimolong
 
     E-Mail: dhbw@windows3.de
@@ -23,10 +23,10 @@
         <meta charset="utf-8" />
 
         <title>Aufgabenliste: ${title}</title>
-        
+
         <!-- https://pixabay.com/de/flach-design-symbol-icon-www-2126884/ -->
         <link rel="shortcut icon" href="<c:url value="/img/favicon.png"/>">
-
+        <link rel="stylesheet" href="<c:url value="/font-awesome-4.7.0/css/font-awesome.min.css"/>" />
         <link rel="stylesheet" href="<c:url value="/fontello/css/fontello.css"/>" />
         <link rel="stylesheet" href="<c:url value="/css/main.css"/>" />
         <link rel="stylesheet" href="<c:url value="/css/form.css"/>" />
@@ -59,7 +59,7 @@
         </header>
 
         <%-- Hauptinhalt der Seite --%>
-        <main>    
+        <main>
             <jsp:invoke fragment="content"/>
         </main>
     </body>

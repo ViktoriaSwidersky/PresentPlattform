@@ -51,4 +51,10 @@ public class GiftIt {
     ) {
         return giftBean.search(search, category, status);
     }
+
+    @WebMethod
+    @WebResult(name = "gifts")
+    public List<Gift_giftit> findByUsername(@WebParam(name = "username") String username) {
+        return giftBean.findByUsername(username);
+    }
 }

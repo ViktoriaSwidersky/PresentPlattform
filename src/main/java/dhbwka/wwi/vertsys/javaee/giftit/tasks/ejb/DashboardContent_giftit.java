@@ -91,9 +91,6 @@ public class DashboardContent_giftit implements DashboardContentProvider_giftit 
                 case IDEA:
                     icon = "idea";
                     break;
-                case PLATFORM_FOUND:
-                    icon = "treasure_chest";
-                    break;
                 case IN_ORDER:
                     icon = "package";
                     break;

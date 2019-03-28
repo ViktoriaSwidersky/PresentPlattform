@@ -39,31 +39,25 @@
             <form action="j_security_check" method="post" class="stacked">
                 <div class="column">
                     <%-- Eingabefelder --%>
-                    <label for="signup_forname">
-                        Vorname:
-                        <span class="required">*</span>
-                    </label>
-                    <div class="side-by-side">
-                        <input type="text" name="j_forname">
+                    <div class="form group">
+                        <label class="bolt" for="j_username" required>Benutzername:<span class="required">*</span></label>
+                        <div class = "input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" name="j_username" class ="form-control" id="benutzername" placeholder="Benutzername eingeben">
+                        </div>
                     </div>
-                    <label for="signup_lastname">
-                        Nachname:
-                        <span class="required">*</span>
-                    </label>
-                    <div class="side-by-side">
-                        <input type="text" name="j_lastname">
-                    </div>
-                    <label for="j_username">
-                        Benutzername:
-                        <span class="required">*</span>
-                    </label>
-                    <input type="text" name="j_username">
 
-                    <label for="j_password">
-                        Passwort:
-                        <span class="required">*</span>
-                    </label>
-                    <input type="password" name="j_password">
+                    <div class ="form-group">
+                        <label class="bolt" for="j_password" required>Passwort:<span class="required">*</span></label>
+                        <div class = "input-group form-group">
+                            <div class="input-group-prepend ">
+                                <span class="input-group-text"> <i class="fa fa-key"></i></span>
+                            </div>
+                            <input type="password" name="j_password" class = "form-control" placeholder="Passwort eingeben">
+                        </div>
+                    </div>
 
                     <%-- Button zum Abschicken --%>
                     <button class="icon-login" type="submit">
