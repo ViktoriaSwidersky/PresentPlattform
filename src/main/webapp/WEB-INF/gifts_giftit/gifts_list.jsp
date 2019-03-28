@@ -95,7 +95,7 @@
                     <c:forEach items="${gifts}" var="gift">
                         <tr>
                             <td>
-                                <a href="<c:url value="/app/tasks/task/${gift.id}/"/>">
+                                <a href="<c:url value="/app/gifts/gift/${gift.id}/"/>">
                                     <c:out value="${gift.shortText}"/>
                                 </a>
                             </td>

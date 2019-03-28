@@ -162,7 +162,7 @@ public class GiftEditServlet_giftit extends HttpServlet {
         // Weiter zur nächsten Seite
         if (errors.isEmpty()) {
             // Keine Fehler: Startseite aufrufen
-            response.sendRedirect(WebUtils.appUrl(request, "/app/GiftList"));
+            response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard_giftit"));
         } else {
             // Fehler: Formuler erneut anzeigen
             FormValues formValues = new FormValues();
