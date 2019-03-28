@@ -40,6 +40,9 @@
         <div class="menuitem">
             <a href="<c:url value="/app/gifts/categories/"/>">Kategorien bearbeiten</a>
         </div>
+        <div class="menuitem">
+            <a href="<c:url value="/app/gifts/changeDates/"/>">Eigene Daten ändern</a>
+        </div>
     </jsp:attribute>
 
     <jsp:attribute name="content">
