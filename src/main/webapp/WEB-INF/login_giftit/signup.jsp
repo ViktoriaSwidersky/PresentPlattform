@@ -44,42 +44,54 @@
                     <input type="hidden" name="csrf_token" value="${csrf_token}">
 
                     <%-- Eingabefelder --%>
-                    <label for="signup_forname">
-                        Vorname:
-                        <span class="required">*</span>
-                    </label>
-                    <div class="side-by-side">
-                        <input type="text" name="signup_forname" value="${signup_form.values["signup_forname"][0]}">
-                    </div>
-                    <label for="signup_lastname">
-                        Nachname:
-                        <span class="required">*</span>
-                    </label>
-                    <div class="side-by-side">
-                        <input type="text" name="signup_lastname" value="${signup_form.values["signup_lastname"][0]}">
-                    </div>
-                    <label for="signup_username">
-                        Benutzername:
-                        <span class="required">*</span>
-                    </label>
-                    <div class="side-by-side">
-                        <input type="text" name="signup_username" value="${signup_form.values["signup_username"][0]}">
+                    <div class="form-group">
+                        <label class="bolt" for="signup_forname">Vorname:<span class="required">*</span></label>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-address-book-o"></i></span>
+                            </div>
+                            <input type="text" class ="form-control" name="signup_forname" value="${signup_form.values["signup_forname"][0]}" placeholder="Vorname">
+                        </div>
                     </div>
 
-                    <label for="signup_password1">
-                        Passwort:
-                        <span class="required">*</span>
-                    </label>
-                    <div class="side-by-side">
-                        <input type="password" name="signup_password1" value="${signup_form.values["signup_password1"][0]}">
+                    <div class="form-group">
+                        <label class="bolt" for="signup_lastname">Nachname:<span class="required">*</span></label>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-address-book-o"></i></span>
+                            </div>
+                            <input type="text" class ="form-control" name="signup_lastname" value="${signup_form.values["signup_lastname"][0]}" placeholder="Nachname">
+                        </div>
                     </div>
 
-                    <label for="signup_password2">
-                        Passwort (wdh.):
-                        <span class="required">*</span>
-                    </label>
-                    <div class="side-by-side">
-                        <input type="password" name="signup_password2" value="${signup_form.values["signup_password2"][0]}">
+                    <div class="form group">
+                        <label class="bolt" for="signup_username" required>Benutzername:<span class="required">*</span></label>
+                        <div class = "input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" name="signup_username" class ="form-control" id="benutzername" placeholder="Benutzername eingeben" value="${signup_form.values["signup_username"][0]}">
+                        </div>
+                    </div>
+
+                    <div class ="form-group">
+                        <label class="bolt" for="signup_password1" required>Passwort:<span class="required">*</span></label>
+                        <div class = "input-group form-group">
+                            <div class="input-group-prepend ">
+                                <span class="input-group-text"> <i class="fa fa-key"></i></span>
+                            </div>
+                            <input type="password" name="signup_password1" class = "form-control" placeholder="Passwort eingeben" value="${signup_form.values["signup_password1"][0]}">
+                        </div>
+                    </div>
+
+                    <div class ="form-group">
+                        <label class="bolt" for="signup_password2" required>Passwort (wdh.):<span class="required">*</span></label>
+                        <div class = "input-group form-group">
+                            <div class="input-group-prepend ">
+                                <span class="input-group-text"> <i class="fa fa-key"></i></span>
+                            </div>
+                            <input type="password" name="signup_password2" class = "form-control" placeholder="Passwort wiederholen" value="${signup_form.values["signup_password2"][0]}">
+                        </div>
                     </div>
 
                     <%-- Button zum Abschicken --%>

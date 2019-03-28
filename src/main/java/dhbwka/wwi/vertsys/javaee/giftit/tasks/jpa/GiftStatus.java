@@ -13,7 +13,7 @@ package dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa;
  * Statuswerte einer Aufgabe.
  */
 public enum GiftStatus {
-    IDEA, PLATFORM_FOUND, IN_ORDER, DELIVERD, CANCELED;
+    IDEA, IN_ORDER, DELIVERD, CANCELED;
 
     /**
      * Bezeichnung ermitteln
@@ -24,8 +24,6 @@ public enum GiftStatus {
         switch (this) {
             case IDEA:
                 return "Idee";
-            case PLATFORM_FOUND:
-                return "Bestellplattform gefunden";
             case IN_ORDER:
                 return "Bestellt";
             case CANCELED:

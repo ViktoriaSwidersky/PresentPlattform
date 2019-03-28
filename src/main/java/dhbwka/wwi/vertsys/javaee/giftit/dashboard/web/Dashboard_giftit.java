@@ -43,7 +43,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Dashboard_giftit extends HttpServlet {
 
     // Kacheln für Aufgaben
-    @EJB(beanName = "tasks")
+    @EJB
     DashboardContentProvider_giftit giftContent;
 
     @Override
