@@ -11,55 +11,88 @@
 
 <template:base_giftit>
     <jsp:attribute name="title">
-        Eigene Daten
+        Benutzerdaten ändern
     </jsp:attribute>
 
     <jsp:attribute name="head">
-        <link rel="stylesheet" href="<c:url value="/css/owndates.css"/>" />
+        <link rel="stylesheet" href="<c:url value="/css/changesdates.css"/>" />
     </jsp:attribute>
-     
-   <jsp:attribute name="content">  
-    <form method ="post">
-                    <div class="form-group col-md-6">
-                        <label for="forname">
-                         Vorname:
-                         </label>
-                        <input type="text" class="form-control" name="idea_name" value="${user_forname}" required="*">
+
+    <jsp:attribute name="content">
+        <div class="container">
+            <form method="post" class="stacked">
+                <div class="column">
+                    <%-- CSRF-Token --%>
+                    <input type="hidden" name="csrf_token" value="${csrf_token}">
+
+                    <%-- Eingabefelder --%>
+                    <div class="form-group">
+                        <label class="bolt" for="forname">Vorname:</label>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-address-book-o"></i></span>
+                            </div>
+                            <input type="text" class ="form-control" name="forname" value="${signup_form.values["forname"][0]}" placeholder="Vorname">
+                        </div>
                     </div>
-                   
-                    <div class="form-group col-md-6">
-                        <label for="lastname">
-                         Nachname:
-                         </label>
-                        <input type="text" class="form-control" name="price" value="${user_lastname}" required="*">
+
+                    <div class="form-group">
+                        <label class="bolt" for="lastname">Nachname:</label>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-address-book-o"></i></span>
+                            </div>
+                            <input type="text" class ="form-control" name="lastname" value="${signup_form.values["lastname"][0]}" placeholder="Nachname">
+                        </div>
                     </div>
-                    
-                    <div class="form-group col-md-6">
-                        <label for="username">
-                         Benutzername:
-                        </label>
-                        <input type="text" class="form-control" name="link" value="${user_name}" required="*">
+
+                    <div class="form group">
+                        <label class="bolt" for="username">Benutzername:</label>
+                        <div class = "input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" name="username" class ="form-control" id="benutzername" value="${signup_form.values["username"][0]}" readonly="readonly">
+                        </div>
                     </div>
-                    
-                    <div class="form-group col-md-6">
-                        <label for="Passwort">
-                          Passwort:
-                        </label>
-                        <input type="text" class="form-control" name="password" value="${password}" required="*">
+
+                    <div class ="form-group">
+                        <label class="bolt" for="password1">Passwort:</label>
+                        <div class = "input-group form-group">
+                            <div class="input-group-prepend ">
+                                <span class="input-group-text"> <i class="fa fa-key"></i></span>
+                            </div>
+                            <input type="password" name="password1" class = "form-control" placeholder="Passwort eingeben" value="${signup_form.values["password1"][0]}">
+                        </div>
                     </div>
-                    
-                    <div class="form-group col-md-6">
-                        <label for="Passwort2">
-                          Passwort(wdh.):
-                        </label>
-                        <input type="text" class="form-control" name="password2" value="${password2}" required="*">
+
+                    <div class ="form-group">
+                        <label class="bolt" for="password2">Passwort (wdh.):</label>
+                        <div class = "input-group form-group">
+                            <div class="input-group-prepend ">
+                                <span class="input-group-text"> <i class="fa fa-key"></i></span>
+                            </div>
+                            <input type="password" name="password2" class = "form-control" placeholder="Passwort wiederholen" value="${signup_form.values["password2"][0]}">
+                        </div>
                     </div>
-                        
+
                     <%-- Button zum Abschicken --%>
-                    <div>
-                        <button class="btn btn-primary" type="submit"  name="button" value="deleteIdea"><i class="fa fa-trash"></i>&nbsp;&nbsp;Änderungen speichern</button>
-                    </div>  
-         </form>
- </jsp:attribute>
-        
+                    <div class="side-by-side">
+                        <button class="icon-pencil" type="submit">
+                            Registrieren
+                        </button>
+                    </div>
+                </div>
+
+                <%-- Fehlermeldungen --%>
+                <c:if test="${!empty signup_form.errors}">
+                    <ul class="errors">
+                        <c:forEach items="${signup_form.errors}" var="error">
+                            <li>${error}</li>
+                            </c:forEach>
+                    </ul>
+                </c:if>
+            </form>
+        </div>
+    </jsp:attribute>
 </template:base_giftit>
