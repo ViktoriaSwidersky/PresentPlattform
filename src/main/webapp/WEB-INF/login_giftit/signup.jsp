@@ -1,10 +1,10 @@
-<%-- 
+<%--
     Document   : signup
     Created on : 20.03.2019, 20:36:09
     Author     : Viktoria
 --%>
 
-<%-- 
+<%--
     Copyright © 2018 Dennis Schulmeister-Zimolong
 
     E-Mail: dhbw@windows3.de
@@ -21,7 +21,7 @@
 
 <c:set var="base_url" value="<%=request.getContextPath()%>" />
 
-<template:base>
+<template:base_giftit>
     <jsp:attribute name="title">
         Registrierung
     </jsp:attribute>
@@ -44,14 +44,14 @@
                     <input type="hidden" name="csrf_token" value="${csrf_token}">
 
                     <%-- Eingabefelder --%>
-                     <label for="signup_forname">
+                    <label for="signup_forname">
                         Vorname:
                         <span class="required">*</span>
                     </label>
                     <div class="side-by-side">
                         <input type="text" name="signup_forname" value="${signup_form.values["signup_forname"][0]}">
                     </div>
-                     <label for="signup_lastname">
+                    <label for="signup_lastname">
                         Nachname:
                         <span class="required">*</span>
                     </label>
@@ -101,4 +101,4 @@
             </form>
         </div>
     </jsp:attribute>
-</template:base>
+</template:base_giftit>

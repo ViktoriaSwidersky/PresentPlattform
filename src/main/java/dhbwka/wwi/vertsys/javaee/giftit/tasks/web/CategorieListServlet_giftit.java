@@ -46,7 +46,7 @@ import javax.servlet.http.HttpSession;
  * Formular, mit dem ein neue Kategorie angelegt werden kann, sowie eine Liste,
  * die zum Löschen der Kategorien verwendet werden kann.
  */
-@WebServlet(name = "CategorieListServlet", urlPatterns = {"/app/CategorieList"})
+@WebServlet(name = "CategorieListServlet", urlPatterns = {"/app/gifts/categories/"})
 public class CategorieListServlet_giftit extends HttpServlet {
 
     @EJB
@@ -66,7 +66,7 @@ public class CategorieListServlet_giftit extends HttpServlet {
         request.setAttribute("categories", this.categoryBean.findAllSorted());
 
         // Anfrage an dazugerhörige JSP weiterleiten
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/tasks_giftit/categorie_list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/gifts_giftit/categorie_list.jsp");
         dispatcher.forward(request, response);
 
         // Alte Formulardaten aus der Session entfernen

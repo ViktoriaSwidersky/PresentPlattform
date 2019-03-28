@@ -35,7 +35,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Seite zum Anlegen oder Bearbeiten einer Aufgabe.
  */
-@WebServlet(name = "GiftEditServlet", urlPatterns = {"/app/GiftEdit"})
+@WebServlet(name = "GiftEditServlet", urlPatterns = {"/app/gifts/gift/*"})
 public class GiftEditServlet_giftit extends HttpServlet {
 
     @EJB
@@ -71,7 +71,7 @@ public class GiftEditServlet_giftit extends HttpServlet {
         }
 
         // Anfrage an die JSP weiterleiten
-        request.getRequestDispatcher("/WEB-INF/tasks/task_edit.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/gifts_giftit/gifts_edit.jsp").forward(request, response);
 
         session.removeAttribute("gift_form");
     }

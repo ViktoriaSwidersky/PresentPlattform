@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet für die tabellarische Auflisten der Aufgaben.
  */
-@WebServlet(name = "GiftListServlet", urlPatterns = {"/app/GiftList"})
+@WebServlet(name = "GiftListServlet", urlPatterns = {"/app/gifts/list/"})
 public class GiftListServlet_giftit extends HttpServlet {
 
     @EJB
@@ -73,6 +73,6 @@ public class GiftListServlet_giftit extends HttpServlet {
         request.setAttribute("gifts", gifts);
 
         // Anfrage an die JSP weiterleiten
-        request.getRequestDispatcher("/WEB-INF/tasks_giftit/gifts_list.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/gifts_giftit/gifts_list.jsp").forward(request, response);
     }
 }

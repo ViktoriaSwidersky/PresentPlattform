@@ -19,7 +19,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<template:base>
+<template:base_giftit>
     <jsp:attribute name="title">
         <c:choose>
             <c:when test="${edit}">
@@ -37,11 +37,11 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/app/dashboard/"/>">Dashboard</a>
+            <a href="<c:url value="/app/dashboard_giftit"/>">Dashboard</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/GiftList"/>">Liste</a>
+            <a href="<c:url value="/app/gifts/list/"/>">Liste</a>
         </div>
     </jsp:attribute>
 
@@ -132,4 +132,4 @@
             </c:if>
         </form>
     </jsp:attribute>
-</template:base>
+</template:base_giftit>

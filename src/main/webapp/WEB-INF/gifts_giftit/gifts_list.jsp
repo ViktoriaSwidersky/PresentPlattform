@@ -21,7 +21,7 @@
 
 <template:base_giftit>
     <jsp:attribute name="title">
-        Liste der Aufgaben
+        Liste der Geschenke
     </jsp:attribute>
 
     <jsp:attribute name="head">
@@ -34,11 +34,11 @@
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/GiftEdit"/>">Geschenk anlegen</a>
+            <a href="<c:url value="/app/gifts/gift/new"/>">Geschenk anlegen</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/CategorieList"/>">Kategorien bearbeiten</a>
+            <a href="<c:url value="/app/gifts/categories/"/>">Kategorien bearbeiten</a>
         </div>
     </jsp:attribute>
 

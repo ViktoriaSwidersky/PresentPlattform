@@ -30,15 +30,15 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/app/GiftList"/>">Liste der Geschenke</a>
+            <a href="<c:url value="/app/gifts/list/"/>">Liste der Geschenke</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/GiftEdit"/>">Geschenk anlegen</a>
+            <a href="<c:url value="/app/gifts/gift/new/"/>">Geschenk anlegen</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/CategorieList"/>">Kategorien bearbeiten</a>
+            <a href="<c:url value="/app/gifts/categories/"/>">Kategorien bearbeiten</a>
         </div>
     </jsp:attribute>
 

@@ -19,7 +19,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<template:base>
+<template:base_giftit>
     <jsp:attribute name="title">
         Login
     </jsp:attribute>
@@ -73,4 +73,4 @@
             </form>
         </div>
     </jsp:attribute>
-</template:base>
+</template:base_giftit>
