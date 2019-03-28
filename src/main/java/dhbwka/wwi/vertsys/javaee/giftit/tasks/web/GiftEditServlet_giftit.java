@@ -11,12 +11,12 @@ package dhbwka.wwi.vertsys.javaee.giftit.tasks.web;
 
 import dhbwka.wwi.vertsys.javaee.giftit.common.web.WebUtils;
 import dhbwka.wwi.vertsys.javaee.giftit.common.web.FormValues;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.GiftBean_giftit;
-import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean;
-import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.ValidationBean;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Task;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.TaskStatus;
+import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.ValidationBean_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.GiftStatus;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Gift_giftit;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
@@ -42,13 +42,13 @@ public class GiftEditServlet_giftit extends HttpServlet {
     GiftBean_giftit taskBean;
 
     @EJB
-    CategoryBean categoryBean;
+    CategoryBean_giftit categoryBean;
 
     @EJB
-    UserBean userBean;
+    UserBean_giftit userBean;
 
     @EJB
-    ValidationBean validationBean;
+    ValidationBean_giftit validationBean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -56,24 +56,24 @@ public class GiftEditServlet_giftit extends HttpServlet {
 
         // Verfügbare Kategorien und Stati für die Suchfelder ermitteln
         request.setAttribute("categories", this.categoryBean.findAllSorted());
-        request.setAttribute("statuses", TaskStatus.values());
+        request.setAttribute("statuses", GiftStatus.values());
 
         // Zu bearbeitende Aufgabe einlesen
         HttpSession session = request.getSession();
 
-        Task task = this.getRequestedTask(request);
-        request.setAttribute("edit", task.getId() != 0);
+        Gift_giftit gift = this.getRequestedGift(request);
+        request.setAttribute("edit", gift.getId() != 0);
 
-        if (session.getAttribute("task_form") == null) {
+        if (session.getAttribute("gift_form") == null) {
             // Keine Formulardaten mit fehlerhaften Daten in der Session,
             // daher Formulardaten aus dem Datenbankobjekt übernehmen
-            request.setAttribute("task_form", this.createTaskForm(task));
+            request.setAttribute("gift_form", this.createGiftForm(gift));
         }
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/tasks/task_edit.jsp").forward(request, response);
 
-        session.removeAttribute("task_form");
+        session.removeAttribute("gift_form");
     }
 
     @Override
@@ -89,10 +89,10 @@ public class GiftEditServlet_giftit extends HttpServlet {
 
         switch (action) {
             case "save":
-                this.saveTask(request, response);
+                this.saveGift(request, response);
                 break;
             case "delete":
-                this.deleteTask(request, response);
+                this.deleteGift(request, response);
                 break;
         }
     }
@@ -105,64 +105,64 @@ public class GiftEditServlet_giftit extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    private void saveTask(HttpServletRequest request, HttpServletResponse response)
+    private void saveGift(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         // Formulareingaben prüfen
         List<String> errors = new ArrayList<>();
 
-        String taskCategory = request.getParameter("task_category");
-        String taskDueDate = request.getParameter("task_due_date");
-        String taskDueTime = request.getParameter("task_due_time");
-        String taskStatus = request.getParameter("task_status");
-        String taskShortText = request.getParameter("task_short_text");
-        String taskLongText = request.getParameter("task_long_text");
+        String giftCategory = request.getParameter("gift_category");
+        String giftDueDate = request.getParameter("gift_due_date");
+        String giftDueTime = request.getParameter("gift_due_time");
+        String giftStatus = request.getParameter("gift_status");
+        String giftShortText = request.getParameter("gift_short_text");
+        String giftLongText = request.getParameter("gift_long_text");
 
-        Task task = this.getRequestedTask(request);
+        Gift_giftit gift = this.getRequestedGift(request);
 
-        if (taskCategory != null && !taskCategory.trim().isEmpty()) {
+        if (giftCategory != null && !giftCategory.trim().isEmpty()) {
             try {
-                task.setCategory(this.categoryBean.findById(Long.parseLong(taskCategory)));
+                gift.setCategory(this.categoryBean.findById(Long.parseLong(giftCategory)));
             } catch (NumberFormatException ex) {
                 // Ungültige oder keine ID mitgegeben
             }
         }
 
-        Date dueDate = WebUtils.parseDate(taskDueDate);
-        Time dueTime = WebUtils.parseTime(taskDueTime);
+        Date dueDate = WebUtils.parseDate(giftDueDate);
+        Time dueTime = WebUtils.parseTime(giftDueTime);
 
         if (dueDate != null) {
-            task.setDueDate(dueDate);
+            gift.setDueDate(dueDate);
         } else {
             errors.add("Das Datum muss dem Format dd.mm.yyyy entsprechen.");
         }
 
         if (dueTime != null) {
-            task.setDueTime(dueTime);
+            gift.setDueTime(dueTime);
         } else {
             errors.add("Die Uhrzeit muss dem Format hh:mm:ss entsprechen.");
         }
 
         try {
-            task.setStatus(TaskStatus.valueOf(taskStatus));
+            gift.setStatus(GiftStatus.valueOf(giftStatus));
         } catch (IllegalArgumentException ex) {
             errors.add("Der ausgewählte Status ist nicht vorhanden.");
         }
 
-        task.setShortText(taskShortText);
-        task.setLongText(taskLongText);
+        gift.setShortText(giftShortText);
+        gift.setLongText(giftLongText);
 
-        this.validationBean.validate(task, errors);
+        this.validationBean.validate(gift, errors);
 
         // Datensatz speichern
         if (errors.isEmpty()) {
-            this.taskBean.update(task);
+            this.taskBean.update(gift);
         }
 
         // Weiter zur nächsten Seite
         if (errors.isEmpty()) {
             // Keine Fehler: Startseite aufrufen
-            response.sendRedirect(WebUtils.appUrl(request, "/GiftList/"));
+            response.sendRedirect(WebUtils.appUrl(request, "/app/GiftList"));
         } else {
             // Fehler: Formuler erneut anzeigen
             FormValues formValues = new FormValues();
@@ -170,7 +170,7 @@ public class GiftEditServlet_giftit extends HttpServlet {
             formValues.setErrors(errors);
 
             HttpSession session = request.getSession();
-            session.setAttribute("task_form", formValues);
+            session.setAttribute("gift_form", formValues);
 
             response.sendRedirect(request.getRequestURI());
         }
@@ -184,15 +184,15 @@ public class GiftEditServlet_giftit extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    private void deleteTask(HttpServletRequest request, HttpServletResponse response)
+    private void deleteGift(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         // Datensatz löschen
-        Task task = this.getRequestedTask(request);
-        this.taskBean.delete(task);
+        Gift_giftit gift = this.getRequestedGift(request);
+        this.taskBean.delete(gift);
 
         // Zurück zur Übersicht
-        response.sendRedirect(WebUtils.appUrl(request, "/GiftList/"));
+        response.sendRedirect(WebUtils.appUrl(request, "/app/GiftList"));
     }
 
     /**
@@ -203,34 +203,34 @@ public class GiftEditServlet_giftit extends HttpServlet {
      * @param request HTTP-Anfrage
      * @return Zu bearbeitende Aufgabe
      */
-    private Task getRequestedTask(HttpServletRequest request) {
+    private Gift_giftit getRequestedGift(HttpServletRequest request) {
         // Zunächst davon ausgehen, dass ein neuer Satz angelegt werden soll
-        Task task = new Task();
-        task.setOwner(this.userBean.getCurrentUser());
-        task.setDueDate(new Date(System.currentTimeMillis()));
-        task.setDueTime(new Time(System.currentTimeMillis()));
+        Gift_giftit gift = new Gift_giftit();
+        gift.setOwner(this.userBean.getCurrentUser());
+        gift.setDueDate(new Date(System.currentTimeMillis()));
+        gift.setDueTime(new Time(System.currentTimeMillis()));
 
         // ID aus der URL herausschneiden
-        String taskId = request.getPathInfo();
+        String giftId = request.getPathInfo();
 
-        if (taskId == null) {
-            taskId = "";
+        if (giftId == null) {
+            giftId = "";
         }
 
-        taskId = taskId.substring(1);
+        giftId = giftId.substring(1);
 
-        if (taskId.endsWith("/")) {
-            taskId = taskId.substring(0, taskId.length() - 1);
+        if (giftId.endsWith("/")) {
+            giftId = giftId.substring(0, giftId.length() - 1);
         }
 
         // Versuchen, den Datensatz mit der übergebenen ID zu finden
         try {
-            task = this.taskBean.findById(Long.parseLong(taskId));
+            gift = this.taskBean.findById(Long.parseLong(giftId));
         } catch (NumberFormatException ex) {
             // Ungültige oder keine ID in der URL enthalten
         }
 
-        return task;
+        return gift;
     }
 
     /**
@@ -243,37 +243,37 @@ public class GiftEditServlet_giftit extends HttpServlet {
      * @param task Die zu bearbeitende Aufgabe
      * @return Neues, gefülltes FormValues-Objekt
      */
-    private FormValues createTaskForm(Task task) {
+    private FormValues createGiftForm(Gift_giftit gift) {
         Map<String, String[]> values = new HashMap<>();
 
-        values.put("task_owner", new String[]{
-            task.getOwner().getUsername()
+        values.put("gift_owner", new String[]{
+            gift.getOwner().getUsername()
         });
 
-        if (task.getCategory() != null) {
-            values.put("task_category", new String[]{
-                "" + task.getCategory().getId()
+        if (gift.getCategory() != null) {
+            values.put("gift_category", new String[]{
+                "" + gift.getCategory().getId()
             });
         }
 
-        values.put("task_due_date", new String[]{
-            WebUtils.formatDate(task.getDueDate())
+        values.put("gift_due_date", new String[]{
+            WebUtils.formatDate(gift.getDueDate())
         });
 
-        values.put("task_due_time", new String[]{
-            WebUtils.formatTime(task.getDueTime())
+        values.put("gift_due_time", new String[]{
+            WebUtils.formatTime(gift.getDueTime())
         });
 
-        values.put("task_status", new String[]{
-            task.getStatus().toString()
+        values.put("gift_status", new String[]{
+            gift.getStatus().toString()
         });
 
-        values.put("task_short_text", new String[]{
-            task.getShortText()
+        values.put("gift_short_text", new String[]{
+            gift.getShortText()
         });
 
-        values.put("task_long_text", new String[]{
-            task.getLongText()
+        values.put("gift_long_text", new String[]{
+            gift.getLongText()
         });
 
         FormValues formValues = new FormValues();

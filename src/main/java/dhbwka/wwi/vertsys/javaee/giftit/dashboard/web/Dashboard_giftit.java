@@ -23,7 +23,9 @@
 package dhbwka.wwi.vertsys.javaee.giftit.dashboard.web;
 
 import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardContentProvider;
+import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardContentProvider_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardSection;
+import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardSection_giftit;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,17 +44,17 @@ public class Dashboard_giftit extends HttpServlet {
 
     // Kacheln für Aufgaben
     @EJB(beanName = "tasks")
-    DashboardContentProvider taskContent;
+    DashboardContentProvider_giftit giftContent;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         // Dashboard-Rubriken und Kacheln erzeugen und im Request Context ablegen
-        List<DashboardSection> sections = new ArrayList<>();
+        List<DashboardSection_giftit> sections = new ArrayList<>();
         request.setAttribute("sections", sections);
 
-        taskContent.createDashboardContent(sections);
+        giftContent.createDashboardContent(sections);
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/dashboard_giftit/dashboard.jsp").forward(request, response);

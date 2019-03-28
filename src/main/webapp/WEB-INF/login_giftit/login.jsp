@@ -1,10 +1,10 @@
-<%-- 
+<%--
     Document   : login
     Created on : 20.03.2019, 20:36:50
     Author     : Viktoria
 --%>
 
-<%-- 
+<%--
     Copyright © 2018 Dennis Schulmeister-Zimolong
 
     E-Mail: dhbw@windows3.de
@@ -30,7 +30,7 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/signup/"/>">Registrieren</a>
+            <a href="<c:url value="/SignUp"/>">Registrieren</a>
         </div>
     </jsp:attribute>
 
@@ -46,7 +46,7 @@
                     <div class="side-by-side">
                         <input type="text" name="j_forname">
                     </div>
-                     <label for="signup_lastname">
+                    <label for="signup_lastname">
                         Nachname:
                         <span class="required">*</span>
                     </label>
