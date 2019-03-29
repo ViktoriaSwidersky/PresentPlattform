@@ -71,18 +71,23 @@ public class ChangeDates extends HttpServlet {
         String lastname = request.getParameter("lastname");
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
+        String oldPw = null;
 
         if (request.getParameter("ak_password") != null) {
             if (user.checkPassword(request.getParameter("ak_password"))) {
                 user.setForname(firstname);
                 user.setLastname(lastname);
+                oldPw = request.getParameter("ak_password");
 
-                user.setPassword(request.getParameter("password1"));
-                errors = validationBean.validate(user, errors);
-
-                if (!password1.equals(password2)) {
-                    errors.add("Die eingegebenen Passwörter stimmen nicht überein!");
+                if (password1 != "" && password2 != "") {
+                    if (!password1.equals(password2)) {
+                        errors.add("Die eingegebenen Passwörter stimmen nicht überein!");
+                    } else {
+                        user.setPassword(password1);
+                        validationBean.validate(user.getPassword(), errors);
+                    }
                 }
+
             } else {
                 errors.add("Das aktuelle Passwort stimmt nicht!");
             }
@@ -96,6 +101,8 @@ public class ChangeDates extends HttpServlet {
             userBean.update(user);
             response.sendRedirect(request.getContextPath() + "/app/dashboard_giftit");
         } else {
+            user.setPassword(oldPw);
+            userBean.update(user);
             // Fehler: Formuler erneut anzeigen
             FormValues formValues = new FormValues();
             formValues.setValues(request.getParameterMap());

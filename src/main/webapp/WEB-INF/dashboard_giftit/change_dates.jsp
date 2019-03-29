@@ -63,7 +63,7 @@
                     </div>
 
                     <div class ="form-group">
-                        <label class="bolt" for="ak_password">aktuelles Passwort:</label>
+                        <label class="bolt" for="ak_password">aktuelles Passwort:<span class="required">*</span></label>
                         <div class = "input-group form-group">
                             <div class="input-group-prepend ">
                                 <span class="input-group-text"> <i class="fa fa-key"></i></span>
@@ -94,9 +94,7 @@
 
                     <%-- Button zum Abschicken --%>
                     <div class="side-by-side">
-                        <button class="icon-pencil" type="submit">
-                            Änderung speichern
-                            <i class="fa fa-check" aria-hidden="true"></i></button>
+                        <button type="submit">Änderung speichern &nbsp;<i class="fa fa-check" aria-hidden="true"></i></button>
                     </div>
                 </div>
 
