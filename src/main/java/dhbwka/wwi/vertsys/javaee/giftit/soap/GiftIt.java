@@ -21,6 +21,7 @@ import javax.ejb.Stateless;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
+import javax.jws.WebService;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,10 +32,27 @@ import javax.persistence.Id;
  * @author Viktoria
  */
 @Stateless
+@WebService
 public class GiftIt {
 
     @EJB
     private GiftBean_giftit giftBean;
+
+    @EJB
+    UserBean_giftit userBean;
+
+    @WebMethod
+    @WebResult(name = "status")
+    public String signup(
+            @WebParam(name = "username") String username,
+            @WebParam(name = "password") String password,
+            @WebParam(name = "firstname") String firstname,
+            @WebParam(name = "lastname") String lastname)
+            throws UserBean_giftit.UserAlreadyExistsException {
+
+        this.userBean.signup(username, password, firstname, lastname);
+        return "OK";
+    }
 
     @WebMethod
     @WebResult(name = "gifts")

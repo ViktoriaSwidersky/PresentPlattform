@@ -1,9 +1,9 @@
 /*
  * Copyright © 2018 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
@@ -25,7 +25,7 @@ public class UserBean_giftit {
 
     @PersistenceContext
     EntityManager em;
-    
+
     @Resource
     EJBContext ctx;
 
@@ -58,6 +58,7 @@ public class UserBean_giftit {
 
     /**
      * Passwort ändern (ohne zu speichern)
+     *
      * @param user
      * @param oldPassword
      * @param newPassword
@@ -71,24 +72,36 @@ public class UserBean_giftit {
 
         user.setPassword(newPassword);
     }
-    
+
     /**
      * Benutzer löschen
+     *
      * @param user Zu löschender Benutzer
      */
     @RolesAllowed("app-user")
     public void delete(User user) {
         this.em.remove(user);
     }
-    
+
     /**
      * Benutzer aktualisieren
+     *
      * @param user Zu aktualisierender Benutzer
      * @return Gespeicherter Benutzer
      */
     @RolesAllowed("app-user")
     public User update(User user) {
         return em.merge(user);
+    }
+
+    public User validateUser(String username, String password)
+            throws InvalidCredentialsException {
+        User user = em.find(User.class, username);
+        if (user.getGroups().contains("app-user")) {
+            return user;
+        } else {
+            throw new InvalidCredentialsException("Sie haben keine Berechtigung um diese Aktion auszuführen!");
+        }
     }
 
     /**
