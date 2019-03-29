@@ -80,11 +80,11 @@ public class Signup_Servlet_giftit extends HttpServlet {
         String password2 = request.getParameter("signup_password2");
 
         //Vor und Nachname auslesen
-        String forname = request.getParameter("signup_forname");
+        String firstname = request.getParameter("signup_forname");
         String lastname = request.getParameter("signup_lastname");
 
         // Eingaben prüfen
-        User user = new User(username, password1, forname, lastname);
+        User user = new User(username, password1, firstname, lastname);
         List<String> errors = this.validationBean.validate(user);
         this.validationBean.validate(user.getPassword(), errors);
 
@@ -95,7 +95,7 @@ public class Signup_Servlet_giftit extends HttpServlet {
         // Neuen Benutzer anlegen
         if (errors.isEmpty()) {
             try {
-                this.userBean.signup(username, password1, forname, lastname);
+                this.userBean.signup(username, password1, firstname, lastname);
             } catch (UserBean.UserAlreadyExistsException ex) {
                 errors.add(ex.getMessage());
             }
@@ -104,7 +104,6 @@ public class Signup_Servlet_giftit extends HttpServlet {
         // Weiter zur nächsten Seite
         if (errors.isEmpty()) {
             // Keine Fehler: Startseite aufrufen
-            request.login(username, password1);
             response.sendRedirect(request.getContextPath() + "/app/dashboard_giftit");
         } else {
             // Fehler: Formuler erneut anzeigen
