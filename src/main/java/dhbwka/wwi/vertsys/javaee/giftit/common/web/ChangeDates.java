@@ -9,7 +9,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.giftit.common.web;
 
-import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean;
+import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.giftit.common.jpa.User;
 import java.io.IOException;
@@ -34,7 +34,7 @@ import javax.servlet.http.HttpSession;
 public class ChangeDates extends HttpServlet {
 
     @EJB
-    UserBean userBean;
+    UserBean_giftit userBean;
 
     @EJB
     ValidationBean validationBean;

@@ -9,7 +9,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb;
 
-import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.EntityBean;
+import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.EntityBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category_giftit;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
@@ -20,7 +20,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 @RolesAllowed("app-user")
-public class CategoryBean_giftit extends EntityBean<Category_giftit, Long> {
+public class CategoryBean_giftit extends EntityBean_giftit<Category_giftit, Long> {
 
     public CategoryBean_giftit() {
         super(Category_giftit.class);

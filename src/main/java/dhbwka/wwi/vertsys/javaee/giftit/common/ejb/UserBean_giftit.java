@@ -97,11 +97,14 @@ public class UserBean_giftit {
     public User validateUser(String username, String password)
             throws InvalidCredentialsException {
         User user = em.find(User.class, username);
-        if (user.getGroups().contains("app-user")) {
-            return user;
-        } else {
+
+        if (user == null || !user.checkPassword(password)) {
+            throw new InvalidCredentialsException("Benutzername oder Passwort ungültig");
+        } else if (!user.getGroups().contains("app-user")) {
             throw new InvalidCredentialsException("Sie haben keine Berechtigung um diese Aktion auszuführen!");
         }
+
+        return user;
     }
 
     /**

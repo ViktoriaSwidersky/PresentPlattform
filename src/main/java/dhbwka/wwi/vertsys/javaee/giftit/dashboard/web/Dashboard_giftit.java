@@ -22,9 +22,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.giftit.dashboard.web;
 
-import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardContentProvider;
 import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardContentProvider_giftit;
-import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardSection;
 import dhbwka.wwi.vertsys.javaee.giftit.dashboard.ejb.DashboardSection_giftit;
 import java.io.IOException;
 import java.util.ArrayList;

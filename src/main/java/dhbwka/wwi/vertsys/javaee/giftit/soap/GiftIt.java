@@ -57,9 +57,9 @@ public class GiftIt {
     @WebMethod
     @WebResult(name = "gifts")
     public List<Gift_giftit> findallgifts(
-    @WebParam(name = "username") String username,
-    @WebParam(name = "password") String password) throws UserBean_giftit.InvalidCredentialsException {
-        
+            @WebParam(name = "username") String username,
+            @WebParam(name = "password") String password) throws UserBean_giftit.InvalidCredentialsException {
+
         this.userBean.validateUser(username, password);
         return giftBean.findAll();
     }
@@ -82,7 +82,7 @@ public class GiftIt {
     public List<Gift_giftit> findByUsername(
             @WebParam(name = "username") String username,
             @WebParam(name = "password") String password) throws UserBean_giftit.InvalidCredentialsException {
-         this.userBean.validateUser(username, password);
+        this.userBean.validateUser(username, password);
         return giftBean.findByUsername(username);
     }
 }

@@ -9,7 +9,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.giftit.common.jpa;
 
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Task;
+import dhbwka.wwi.vertsys.javaee.giftit.soap.GiftIt;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -71,7 +71,7 @@ public class User implements Serializable {
     List<String> groups = new ArrayList<>();
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    List<Task> tasks = new ArrayList<>();
+    List<GiftIt> gifts = new ArrayList<>();
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public User() {
@@ -95,12 +95,12 @@ public class User implements Serializable {
         this.username = id;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public List<GiftIt> getGifts() {
+        return gifts;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setGifts(List<GiftIt> gifts) {
+        this.gifts = gifts;
     }
 
     public String getLastname() {

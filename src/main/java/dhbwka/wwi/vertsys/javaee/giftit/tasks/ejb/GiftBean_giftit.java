@@ -9,7 +9,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb;
 
-import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.EntityBean;
+import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.EntityBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.GiftStatus;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Gift_giftit;
@@ -26,7 +26,7 @@ import javax.persistence.criteria.Root;
  */
 @Stateless
 @RolesAllowed("app-user")
-public class GiftBean_giftit extends EntityBean<Gift_giftit, Long> {
+public class GiftBean_giftit extends EntityBean_giftit<Gift_giftit, Long> {
 
     public GiftBean_giftit() {
         super(Gift_giftit.class);

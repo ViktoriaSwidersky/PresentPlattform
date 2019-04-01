@@ -22,14 +22,11 @@
 package dhbwka.wwi.vertsys.javaee.giftit.tasks.web;
 
 import dhbwka.wwi.vertsys.javaee.giftit.common.web.FormValues;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.GiftBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean_giftit;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Gift_giftit;
-import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Task;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;

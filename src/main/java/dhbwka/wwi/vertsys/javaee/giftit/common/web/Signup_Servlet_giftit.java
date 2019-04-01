@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.ValidationBean;
-import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean;
+import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.common.jpa.User;
 import java.io.IOException;
 import java.util.List;
@@ -55,7 +55,7 @@ public class Signup_Servlet_giftit extends HttpServlet {
     ValidationBean validationBean;
 
     @EJB
-    UserBean userBean;
+    UserBean_giftit userBean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -96,7 +96,7 @@ public class Signup_Servlet_giftit extends HttpServlet {
         if (errors.isEmpty()) {
             try {
                 this.userBean.signup(username, password1, firstname, lastname);
-            } catch (UserBean.UserAlreadyExistsException ex) {
+            } catch (UserBean_giftit.UserAlreadyExistsException ex) {
                 errors.add(ex.getMessage());
             }
         }
@@ -104,6 +104,7 @@ public class Signup_Servlet_giftit extends HttpServlet {
         // Weiter zur nächsten Seite
         if (errors.isEmpty()) {
             // Keine Fehler: Startseite aufrufen
+            request.login(username, password1);
             response.sendRedirect(request.getContextPath() + "/app/dashboard_giftit");
         } else {
             // Fehler: Formuler erneut anzeigen

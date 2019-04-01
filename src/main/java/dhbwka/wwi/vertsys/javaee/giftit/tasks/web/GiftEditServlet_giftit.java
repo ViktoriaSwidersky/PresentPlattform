@@ -13,7 +13,8 @@ import dhbwka.wwi.vertsys.javaee.giftit.common.web.WebUtils;
 import dhbwka.wwi.vertsys.javaee.giftit.common.web.FormValues;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.GiftBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean_giftit;
-import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.ValidationBean_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.ValidationBean;
+
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.GiftStatus;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Gift_giftit;
@@ -48,7 +49,7 @@ public class GiftEditServlet_giftit extends HttpServlet {
     UserBean_giftit userBean;
 
     @EJB
-    ValidationBean_giftit validationBean;
+    ValidationBean validationBean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
