@@ -44,7 +44,8 @@ public class UserBean_giftit {
      * @param password
      * @param forname
      * @param lastname
-     * @throws UserBean.UserAlreadyExistsException
+     * @throws
+     * dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean_giftit.UserAlreadyExistsException
      */
     public void signup(String username, String password, String forname, String lastname) throws UserAlreadyExistsException {
         if (em.find(User.class, username) != null) {
@@ -62,6 +63,8 @@ public class UserBean_giftit {
      * @param user
      * @param oldPassword
      * @param newPassword
+     * @throws
+     * dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean_giftit.InvalidCredentialsException
      * @throws UserBean.InvalidCredentialsException
      */
     @RolesAllowed("app-user")
