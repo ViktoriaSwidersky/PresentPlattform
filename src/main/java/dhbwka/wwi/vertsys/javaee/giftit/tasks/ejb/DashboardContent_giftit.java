@@ -124,7 +124,7 @@ public class DashboardContent_giftit implements DashboardContentProvider_giftit 
      */
     private DashboardTile_giftit createTile(Category_giftit category, GiftStatus status, String label, String cssClass, String icon) {
         int amount = giftBean.search(null, category, status).size();
-        String href = "/app/tasks/list/";
+        String href = "/app/gifts/list/";
 
         if (category != null) {
             href = WebUtils.addQueryParameter(href, "search_category", "" + category.getId());
