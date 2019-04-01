@@ -34,4 +34,5 @@ public class CategoryBean_giftit extends EntityBean_giftit<Category_giftit, Long
     public List<Category_giftit> findAllSorted() {
         return this.em.createQuery("SELECT c FROM Category_giftit c ORDER BY c.name").getResultList();
     }
+
 }

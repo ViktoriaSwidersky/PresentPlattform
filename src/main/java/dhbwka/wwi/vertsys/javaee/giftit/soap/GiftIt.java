@@ -10,6 +10,7 @@
 package dhbwka.wwi.vertsys.javaee.giftit.soap;
 
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.GiftBean_giftit_soap;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.GiftStatus;
@@ -35,6 +36,9 @@ public class GiftIt {
 
     @EJB
     UserBean_giftit userBean;
+
+    @EJB
+    CategoryBean_giftit categoryBean;
 
     @WebMethod
     @WebResult(name = "status")
@@ -65,11 +69,18 @@ public class GiftIt {
             @WebParam(name = "username") String username,
             @WebParam(name = "password") String password,
             @WebParam(name = "search") String search,
-            @WebParam(name = "category") Category_giftit category,
+            @WebParam(name = "category") String category,
             @WebParam(name = "status") GiftStatus status
     ) throws UserBean_giftit.InvalidCredentialsException {
         this.userBean.validateUser(username, password);
-        return giftBean.search(search, category, status);
+        List<Category_giftit> sortedList = categoryBean.findAllSorted();
+        Category_giftit chooseCategory = null;
+        for (Category_giftit cg : sortedList) {
+            if (cg.getName().equals(category)) {
+                chooseCategory = cg;
+            }
+        }
+        return giftBean.search(search, chooseCategory, status);
     }
 
     @WebMethod
