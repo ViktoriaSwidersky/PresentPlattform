@@ -92,3 +92,11 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 .tile.status-all .content:hover {
     background-color: #e6e6e6;
 }
+
+body{
+    background-image: url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}

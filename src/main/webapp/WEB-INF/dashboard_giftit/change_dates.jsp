@@ -15,7 +15,7 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-        <link rel="stylesheet" href="<c:url value="/css/changesdates.css"/>" />
+        <link rel="stylesheet" href="<c:url value="/css/changedates.css"/>" />
     </jsp:attribute>
 
     <jsp:attribute name="menu">

@@ -1,5 +1,5 @@
 /*
-Copyright © 2018 Dennis Schulmeister-Zimolong
+Copyright © 2019 Dennis Schulmeister-Zimolong
 
 E-Mail: dhbw@windows3.de
 Webseite: https://www.wpvs.de/
@@ -7,11 +7,10 @@ Webseite: https://www.wpvs.de/
 Dieser Quellcode ist lizenziert unter einer
 Creative Commons Namensnennung 4.0 International Lizenz.
 */
-
-.margin {
-    margin-bottom: 1em;
-}
-
+/* 
+    Created on : 04.04.2019, 09:47:34
+    Author     : Viktoria
+*/
 body{
     background-image: url(../img/background.jpg);
     background-repeat: no-repeat;
@@ -19,4 +18,3 @@ body{
     background-size: cover;
     background-attachment: fixed;
 }
-

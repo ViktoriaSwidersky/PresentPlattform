@@ -11,3 +11,11 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 .margin {
     margin-bottom: 1em;
 }
+
+body{
+    background-image: url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
