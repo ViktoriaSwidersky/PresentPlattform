@@ -193,7 +193,7 @@ public class GiftEditServlet_giftit extends HttpServlet {
         this.taskBean.delete(gift);
 
         // Zurück zur Übersicht
-        response.sendRedirect(WebUtils.appUrl(request, "/app/GiftList"));
+        response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard_giftit"));
     }
 
     /**
