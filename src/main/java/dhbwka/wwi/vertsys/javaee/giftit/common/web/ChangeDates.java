@@ -77,7 +77,6 @@ public class ChangeDates extends HttpServlet {
             if (user.checkPassword(request.getParameter("ak_password"))) {
                 user.setForname(firstname);
                 user.setLastname(lastname);
-                oldPw = request.getParameter("ak_password");
 
                 if (password1 != "" && password2 != "") {
                     if (!password1.equals(password2)) {
@@ -101,8 +100,6 @@ public class ChangeDates extends HttpServlet {
             userBean.update(user);
             response.sendRedirect(request.getContextPath() + "/app/dashboard_giftit");
         } else {
-            user.setPassword(oldPw);
-            userBean.update(user);
             // Fehler: Formuler erneut anzeigen
             FormValues formValues = new FormValues();
             formValues.setValues(request.getParameterMap());
