@@ -11,6 +11,7 @@ package dhbwka.wwi.vertsys.javaee.giftit.soap;
 
 import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.UserBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean_giftit;
+import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.CategoryBean_giftit_soap;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.ejb.GiftBean_giftit_soap;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.GiftStatus;
@@ -38,7 +39,7 @@ public class GiftIt {
     UserBean_giftit userBean;
 
     @EJB
-    CategoryBean_giftit categoryBean;
+    CategoryBean_giftit_soap categoryBean;
 
     @WebMethod
     @WebResult(name = "status")

@@ -13,20 +13,15 @@ import dhbwka.wwi.vertsys.javaee.giftit.common.ejb.EntityBean_giftit;
 import dhbwka.wwi.vertsys.javaee.giftit.tasks.jpa.Category_giftit;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
  * Einfache EJB mit den üblichen CRUD-Methoden für Kategorien.
  */
 @Stateless
-@RolesAllowed("app-user")
-public class CategoryBean_giftit extends EntityBean_giftit<Category_giftit, Long> {
+public class CategoryBean_giftit_soap extends EntityBean_giftit<Category_giftit, Long> {
 
-    @EJB
-    CategoryBean_giftit_soap categoryBean;
-
-    public CategoryBean_giftit() {
+    public CategoryBean_giftit_soap() {
         super(Category_giftit.class);
     }
 
@@ -36,7 +31,7 @@ public class CategoryBean_giftit extends EntityBean_giftit<Category_giftit, Long
      * @return Liste mit allen Kategorien
      */
     public List<Category_giftit> findAllSorted() {
-        return categoryBean.findAllSorted();
+        return this.em.createQuery("SELECT c FROM Category_giftit c ORDER BY c.name").getResultList();
     }
 
 }
